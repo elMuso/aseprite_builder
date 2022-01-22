@@ -1,4 +1,4 @@
-name: Build and deploy Asepritee
+name: Build and deploy Aseprite
 
 on:
   schedule:
@@ -69,8 +69,6 @@ jobs:
       - name: (Windows) Install dependencies
         if: matrix.os == 'windows-latest'
         uses: seanmiddleditch/gha-setup-ninja@master
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       - name: (Ubuntu) Install dependencies
         if: matrix.os == 'ubuntu-latest'
         run: sudo apt install -y cmake ninja-build libxcursor-dev libxi-dev libgl1-mesa-dev
@@ -116,8 +114,6 @@ jobs:
       - name: Run Ninja
         working-directory: aseprite/build
         run: ninja aseprite
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
       - name: Clean up build
         working-directory: aseprite/build/bin
         shell: bash
